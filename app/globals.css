@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Tomorrow-Night-ish palette (after kth's lab) =====
+   bg #1d1f21  fg #c9cacc  accent-green #2bbc8a  accent-pink #d480aa  muted #666
+*/
+@layer base {
+  :root {
+    --background: 210 6% 12%;             /* #1d1f21 */
+    --foreground: 220 3% 79%;             /* #c9cacc */
+    --card: 220 7% 14%;                   /* #212326 */
+    --card-foreground: 220 3% 79%;
+    --primary: 157 63% 45%;               /* #2bbc8a */
+    --primary-foreground: 210 6% 12%;
+    --secondary: 216 7% 21%;              /* #323539 */
+    --secondary-foreground: 220 3% 79%;
+    --muted: 216 7% 18%;
+    --muted-foreground: 0 0% 40%;         /* #666 */
+    --accent: 330 49% 67%;                /* #d480aa */
+    --accent-foreground: 210 6% 12%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 96%;
+    --border: 216 7% 21%;
+    --input: 216 7% 18%;
+    --ring: 157 63% 45%;
+    --radius: 0.25rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply bg-background text-foreground;
+    font-family: "Meslo LG", Menlo, Consolas, "Liberation Mono", ui-monospace, monospace;
+    font-feature-settings: "calt" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Links: green by default; pink on hover, with the subtle gradient underline
+     trick the source theme uses. */
+  a {
+    color: hsl(var(--primary));
+    text-decoration: none;
+  }
+  a:hover {
+    color: hsl(var(--accent));
+  }
+
+  /* Headings: foreground, with the green sitting on hover via inheritance. */
+  h1, h2, h3, h4 {
+    color: hsl(var(--foreground));
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.35);
+    color: hsl(var(--foreground));
+  }
+
+  /* Inline code + the <code> chip we use a lot for invite codes / slugs. */
+  code {
+    background: hsl(var(--secondary));
+    color: hsl(var(--accent));
+    padding: 0.05rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.92em;
+  }
+
+  input, textarea, select {
+    caret-color: hsl(var(--primary));
+  }
+}
+
+/* terminal prompt prefix utility (used on the home hero) */
+.prompt::before {
+  content: "❯ ";
+  color: hsl(var(--primary));
+}
